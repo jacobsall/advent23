@@ -1,6 +1,6 @@
 #!/bin/bash
 
-day=$(date +"%d")
+day=$(date +"%-d")
 delete=false
 
 while getopts 'rd:' o; do
@@ -21,7 +21,9 @@ if $delete ; then
   rm -rf $day.py
 else 
   if test -f "inputs/$day.txt"; then
-    echo "day already dowloaded, skipping"
+    echo "day already dowloaded, only updating puzzle.md"
+    rm -rf puzzles/$day.md
+    aoc download -P -p puzzles/$day.md
   else
     echo "creating day $day"
     aoc download -i inputs/$day.txt -p puzzles/$day.md
