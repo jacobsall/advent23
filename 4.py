@@ -13,7 +13,7 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
 """.strip()
 
 def process(data):
-  return [[re.split('\s+',numbers.strip()) for numbers in line.split(":")[1].split("|")] for line in data.split("\n")] 
+  return [[re.split('\\s+', numbers.strip()) for numbers in line.split(":")[1].split("|")] for line in data.split("\n")] 
 
 def part1(cards):
   def score(card):
