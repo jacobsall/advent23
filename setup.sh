@@ -27,8 +27,9 @@ else
   else
     echo "creating day $day"
     aoc download -i inputs/$day.txt -p puzzles/$day.md
+    testData=$(ggrep -zPo '(?<=\`\`\`\n)[\s\S]*(?=\n\`\`\`)' puzzles/$day.md)
     touch $day.py
-    printf "f = open(\"inputs/$day.txt\")\ndata = f.read()\n" >> $day.py
+    printf "f = open(\"inputs/$day.txt\")\ndata = f.read().strip()\n\ntest_data = \"\"\"\n$testData\n\"\"\".strip()\n\ndef process(data):\n  return data\n\ndef part1(data):\n  return \"not implemented\"\n\ndef part2(data):\n  return \"not implemented\"\n\nprocessed = process(test_data)\nprint(\"part 1\", part1(processed))\nprint(\"part 2\", part2(processed))" >> $day.py
     code puzzles/$day.md $day.py inputs/$day.txt
   fi 
 fi
